@@ -1,13 +1,12 @@
 package clase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Meniu {
-    private static String TITLU = "MENIU";
-    private List<Sectiune> sectiuni = new ArrayList<Sectiune>();
+    private static final String TITLU = "MENIU";
+    private List<Sectiune> sectiuni = new ArrayList<>();
 
     public Meniu(){}
 

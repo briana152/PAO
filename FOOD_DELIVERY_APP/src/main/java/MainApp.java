@@ -142,7 +142,7 @@ public class MainApp {
 //        System.out.println("Cooming soon!");
         SortedSet<AdresaClient> set = client.getAdreseClient();
         AdresaClient[] array = set.toArray(new AdresaClient[0]);
-        AdresaClient a = null;
+        AdresaClient a;
 
         seeAllAddresses();
 
@@ -174,8 +174,8 @@ public class MainApp {
     }
 
     private void seeAllOrders() {
-        System.out.println("Cooming soon!");
-
+//        System.out.println("Cooming soon!");
+        ComandaService.seeAllOrders(client);
     }
 
     private void findOrderById() {
@@ -189,10 +189,7 @@ public class MainApp {
     }
 
     private void placeOrder() {
-        System.out.println("Cooming soon!");
-        //TODO: DE TERMINAT IMPLEMENTAREA
-//        seeAllRestaurants();
-//        System.out.print("Introduceti numarul restaurantului de la care doriti sa comandati(vedeti mai sus): ");
-//        int i = readIndexOption(restaurante.size());
+//        System.out.println("Cooming soon!");
+        ComandaService.placeOrder(client, restaurante);
     }
 }

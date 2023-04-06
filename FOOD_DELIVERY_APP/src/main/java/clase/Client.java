@@ -5,7 +5,7 @@ import java.util.*;
 public class Client{
     private String numeClient;
     private SortedSet<AdresaClient> adreseClient = new TreeSet<>();
-    private List<Comanda> comenzi = new ArrayList<Comanda>();
+    private List<Comanda> comenzi = new ArrayList<>();
     public Client(){
         this.numeClient = "Client";
     }

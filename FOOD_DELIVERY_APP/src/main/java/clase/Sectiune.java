@@ -1,13 +1,12 @@
 package clase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Sectiune {
     private String numeSectiune;
-    private List<Produs> produseSectiune = new ArrayList<Produs>();
+    private List<Produs> produseSectiune = new ArrayList<>();
 
     public Sectiune(){}
 

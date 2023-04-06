@@ -10,11 +10,11 @@ import java.util.*;
 
 public class GenerateService {
     public static Restaurant KFC(){
-        List<Produs> produse1 = new ArrayList<Produs>();
-        List<Produs> produse2 = new ArrayList<Produs>();
-        List<Produs> produse3 = new ArrayList<Produs>();
+        List<Produs> produse1 = new ArrayList<>();
+        List<Produs> produse2 = new ArrayList<>();
+        List<Produs> produse3 = new ArrayList<>();
 
-        List<Sectiune> sectiuni = new ArrayList<Sectiune>();
+        List<Sectiune> sectiuni = new ArrayList<>();
 
         produse1.add(new Produs("Meniu 8 strips nepicanti", 49.99));
         produse1.add(new Produs("Meniu 8 hot wings",45.99));
@@ -41,11 +41,11 @@ public class GenerateService {
     }
 
     public static Restaurant Starbucks(){
-        List<Produs> produse1 = new ArrayList<Produs>();
-        List<Produs> produse2 = new ArrayList<Produs>();
-        List<Produs> produse3 = new ArrayList<Produs>();
+        List<Produs> produse1 = new ArrayList<>();
+        List<Produs> produse2 = new ArrayList<>();
+        List<Produs> produse3 = new ArrayList<>();
 
-        List<Sectiune> sectiuni = new ArrayList<Sectiune>();
+        List<Sectiune> sectiuni = new ArrayList<>();
 
         produse1.add(new Produs("Toffe nut latte", 23.99));
         produse1.add(new Produs("Ciocolata calda cu caramel",25.00));
@@ -69,7 +69,7 @@ public class GenerateService {
 
     }
     public static List<Restaurant> returnAll(){
-        List<Restaurant> restaurante = new ArrayList<Restaurant>();
+        List<Restaurant> restaurante = new ArrayList<>();
         restaurante.add(KFC());
         restaurante.add(Starbucks());
         return restaurante;

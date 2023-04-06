@@ -1,12 +1,11 @@
 package clase;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class Cos implements Cloneable{
-    private Map<Produs, Integer> produse = new HashMap<Produs, Integer>();
+    private Map<Produs, Integer> produse = new HashMap<>();
     public Cos(){}
 
     public Cos(Map<Produs, Integer> produse) {
@@ -44,7 +43,7 @@ public class Cos implements Cloneable{
     @Override
     protected Object clone() throws CloneNotSupportedException {
         Cos cosClone = (Cos) super.clone();
-        Map<Produs, Integer> clonedProduse = new HashMap<Produs, Integer>();
+        Map<Produs, Integer> clonedProduse = new HashMap<>();
         for (Map.Entry<Produs, Integer> entry : produse.entrySet()) {
             //TODO: provide clone implementation for Produs (checked)
             Produs produsClone = (Produs) entry.getKey().clone();

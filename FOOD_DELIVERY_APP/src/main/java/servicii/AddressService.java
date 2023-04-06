@@ -13,14 +13,13 @@ public class AddressService {
         }
     }
     public static AdresaClient readAddress(){
-        //TODO: CITIREA NU MERGE PT STRINGURI CU SPATII!!!!!!
-        System.out.print("Judet: ");
-        String judet = scanner.next();
-        System.out.print("Localitate/Sector: ");
-        String localitate = scanner.next();
-        System.out.print("Strada: ");
-        String strada = scanner.next();
-        System.out.print("Numarul: ");
+        System.out.println("Judet: ");
+        String judet = scanner.nextLine();
+        System.out.println("Localitate/Sector: ");
+        String localitate = scanner.nextLine();
+        System.out.println("Strada: ");
+        String strada = scanner.nextLine();
+        System.out.println("Numarul: ");
         int nr = -1;
         do {
             try {
@@ -29,10 +28,10 @@ public class AddressService {
                 System.out.println(exception.getMessage());
             }
         } while (nr < 0);
-        System.out.print("Bloc: ");
-        String bloc = scanner.next();
-        System.out.print("Scara: ");
-        String scara = scanner.next();
+        System.out.println("Bloc: ");
+        String bloc = scanner.nextLine();
+        System.out.println("Scara: ");
+        String scara = scanner.nextLine();
         System.out.println("Apartament: ");
         int ap = -1;
         do {
@@ -74,22 +73,22 @@ public class AddressService {
 
         switch (option) {
             case 1 -> {
-                System.out.print("Judet: ");
-                newString = scanner.next();
+                System.out.println("Judet: ");
+                newString = scanner.nextLine();
                 adresa.setJudet(newString);
             }
             case 2 -> {
-                System.out.print("Localitate: ");
-                newString = scanner.next();
+                System.out.println("Localitate: ");
+                newString = scanner.nextLine();
                 adresa.setLocalitate(newString);
             }
             case 3 -> {
-                System.out.print("Strada: ");
-                newString = scanner.next();
+                System.out.println("Strada: ");
+                newString = scanner.nextLine();
                 adresa.setStrada(newString);
             }
             case 4 -> {
-                System.out.print("Nr strada: ");
+                System.out.println("Nr strada: ");
                 do {
                     try {
                         newNumber = GeneralService.readInt();
@@ -101,17 +100,17 @@ public class AddressService {
                 adresa.setNumar(newNumber);
             }
             case 5 -> {
-                System.out.print("Bloc: ");
-                newString = scanner.next();
+                System.out.println("Bloc: ");
+                newString = scanner.nextLine();
                 adresa.setBloc(newString);
             }
             case 6 -> {
-                System.out.print("Scara: ");
-                newString = scanner.next();
+                System.out.println("Scara: ");
+                newString = scanner.nextLine();
                 adresa.setScara(newString);
             }
             case 7 -> {
-                System.out.print("Nr apartament: ");
+                System.out.println("Nr apartament: ");
                 do {
                     try {
                         newNumber = GeneralService.readInt();

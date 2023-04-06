@@ -4,36 +4,27 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Comanda implements Cloneable{
-    private static int ID = 0;
     private String numeRestaurant;
     private Adresa adresaRestaurant;
     private AdresaClient adresaLivrare;
     private Cos cos;
-    private float total;
+    private double total;
     private String modDePlata;
     private Date data;
     private final Livrator livrator = new Livrator();
 
     public Comanda(){
-        ID++;
+        this.data = new Date();
     }
 
-    public Comanda(String numeRestaurant, Adresa adresaRestaurant, AdresaClient adresaLivrare, Cos cos, float total, String modDePlata, Date data) {
+    public Comanda(String numeRestaurant, Adresa adresaRestaurant, AdresaClient adresaLivrare, Cos cos, double total, String modDePlata) {
         this.numeRestaurant = numeRestaurant;
         this.adresaRestaurant = adresaRestaurant;
         this.adresaLivrare = adresaLivrare;
         this.cos = cos;
         this.total = total;
         this.modDePlata = modDePlata;
-        this.data = data;
-    }
-
-    public static int getID() {
-        return ID;
-    }
-
-    public static void setID(int ID) {
-        Comanda.ID = ID;
+        this.data = new Date();
     }
 
     public String getNumeRestaurant() {
@@ -68,11 +59,11 @@ public class Comanda implements Cloneable{
         this.cos = cos;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -101,7 +92,7 @@ public class Comanda implements Cloneable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comanda comanda = (Comanda) o;
-        return Float.compare(comanda.total, total) == 0 && Objects.equals(numeRestaurant, comanda.numeRestaurant) && Objects.equals(adresaRestaurant, comanda.adresaRestaurant) && Objects.equals(adresaLivrare, comanda.adresaLivrare) && Objects.equals(cos, comanda.cos) && Objects.equals(modDePlata, comanda.modDePlata) && Objects.equals(data, comanda.data) && Objects.equals(livrator, comanda.livrator);
+        return Double.compare(comanda.total, total) == 0 && Objects.equals(numeRestaurant, comanda.numeRestaurant) && Objects.equals(adresaRestaurant, comanda.adresaRestaurant) && Objects.equals(adresaLivrare, comanda.adresaLivrare) && Objects.equals(cos, comanda.cos) && Objects.equals(modDePlata, comanda.modDePlata) && Objects.equals(data, comanda.data) && Objects.equals(livrator, comanda.livrator);
     }
 
     @Override
@@ -111,7 +102,7 @@ public class Comanda implements Cloneable{
 
     @Override
     public String toString() {
-        return "Comanda{" +
+        return  "Comanda{" +
                 "numeRestaurant='" + numeRestaurant + '\'' +
                 ", adresaRestaurant=" + adresaRestaurant +
                 ", adresaLivrare=" + adresaLivrare +
@@ -124,7 +115,7 @@ public class Comanda implements Cloneable{
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         Comanda cloned = (Comanda) super.clone();
         //TODO: provide implementation for clone in Adresa, AdresaClient, Cos (checked)
         cloned.adresaRestaurant = (Adresa) adresaRestaurant.clone();

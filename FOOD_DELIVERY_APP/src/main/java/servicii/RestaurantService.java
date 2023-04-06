@@ -13,7 +13,7 @@ public class RestaurantService {
         }
     }
     public static void findRestaurantByName(String nume, List<Restaurant> restaurante) throws CustomException{
-        List<Restaurant> restaurante2 = new ArrayList<Restaurant>();
+        List<Restaurant> restaurante2 = new ArrayList<>();
         for (Restaurant r: restaurante) {
             if(r.getNumeRestaurant().equalsIgnoreCase(nume)){
                 restaurante2.add(r);
