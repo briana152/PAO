@@ -1,3 +1,4 @@
+# PAO
 Ideea aleasa:
 	-> platforma food delivery
 
@@ -28,5 +29,3 @@ Interogari/Actiuni:
 	8. Cautati o comanda dupa id
 	9. Modificati adresa de livrare a unei comenzi
 	10. Plasati o comanda
-
-
