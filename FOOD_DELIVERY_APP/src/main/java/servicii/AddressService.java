@@ -1,6 +1,6 @@
 package servicii;
 
-import Exceptii.CustomException;
+import exceptii.CustomException;
 import clase.AdresaClient;
 import java.util.Scanner;
 import java.util.SortedSet;
@@ -124,7 +124,6 @@ public class AddressService {
         }
     }
     public static void deleteAddress(AdresaClient adresa, SortedSet<AdresaClient> adrese) {
-
         adrese.remove(adresa);
     }
 }

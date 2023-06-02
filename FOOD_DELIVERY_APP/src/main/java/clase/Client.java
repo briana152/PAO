@@ -3,17 +3,23 @@ package clase;
 import java.util.*;
 
 public class Client{
+    private String userName;
     private String numeClient;
     private SortedSet<AdresaClient> adreseClient = new TreeSet<>();
     private List<Comanda> comenzi = new ArrayList<>();
-    public Client(){
-        this.numeClient = "Client";
+    public Client(){}
+
+    public Client(String userName, String numeClient) {
+        this.userName = userName;
+        this.numeClient = numeClient;
     }
 
-    public Client(String numeClient, SortedSet<AdresaClient> adreseClient, List<Comanda> comenzi) {
-        this.numeClient = numeClient;
-        this.adreseClient = adreseClient;
-        this.comenzi = comenzi;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getNumeClient() {
@@ -45,18 +51,19 @@ public class Client{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(numeClient, client.numeClient) && Objects.equals(adreseClient, client.adreseClient) && Objects.equals(comenzi, client.comenzi);
+        return userName.equals(client.userName) && numeClient.equals(client.numeClient) && Objects.equals(adreseClient, client.adreseClient) && Objects.equals(comenzi, client.comenzi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numeClient, adreseClient, comenzi);
+        return Objects.hash(userName, numeClient, adreseClient, comenzi);
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "numeClient='" + numeClient + '\'' +
+                "userName='" + userName + '\'' +
+                ", numeClient='" + numeClient + '\'' +
                 ", adreseClient=" + adreseClient +
                 ", comenzi=" + comenzi +
                 '}';

@@ -1,6 +1,8 @@
 package clase;
 
 public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cloneable{
+    private int ID;
+    private String userNameClient;
     private String bloc;
     private String scara;
     private int apartament;
@@ -11,6 +13,38 @@ public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cl
         this.bloc = bloc;
         this.scara = scara;
         this.apartament = apartament;
+    }
+
+    public AdresaClient(String judet, String localitate, String strada, int numar, String userNameClient, String bloc, String scara, int apartament) {
+        super(judet, localitate, strada, numar);
+        this.userNameClient = userNameClient;
+        this.bloc = bloc;
+        this.scara = scara;
+        this.apartament = apartament;
+    }
+    public AdresaClient(int ID, String judet, String localitate, String strada, int numar, String userNameClient,  String bloc, String scara, int apartament) {
+        super(judet, localitate, strada, numar);
+        this.ID = ID;
+        this.userNameClient = userNameClient;
+        this.bloc = bloc;
+        this.scara = scara;
+        this.apartament = apartament;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getUserNameClient() {
+        return userNameClient;
+    }
+
+    public void setUserNameClient(String userNameClient) {
+        this.userNameClient = userNameClient;
     }
 
     public String getBloc() {
@@ -39,9 +73,10 @@ public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cl
 
     @Override
     public String toString() {
-        return super.toString() + '\'' +
+        return super.toString() + " " +
                 "AdresaClient{" +
-                "bloc='" + bloc + '\'' +
+                "ID=" + ID +
+                ", bloc='" + bloc + '\'' +
                 ", scara='" + scara + '\'' +
                 ", apartament=" + apartament +
                 '}';
@@ -55,8 +90,10 @@ public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cl
     @Override
     protected Object clone() throws CloneNotSupportedException {
         AdresaClient clone = (AdresaClient) super.clone();
+        clone.setUserNameClient(userNameClient);
         clone.setBloc(bloc);
         clone.setScara(scara);
+
 
         return clone;
     }

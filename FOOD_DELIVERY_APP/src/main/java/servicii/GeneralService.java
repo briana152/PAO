@@ -1,6 +1,6 @@
 package servicii;
 
-import Exceptii.CustomException;
+import exceptii.CustomException;
 import java.util.Scanner;
 
 public class GeneralService {

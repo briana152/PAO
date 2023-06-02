@@ -1,6 +1,6 @@
 package servicii;
 
-import Exceptii.CustomException;
+import exceptii.CustomException;
 import clase.*;
 import java.util.*;
 

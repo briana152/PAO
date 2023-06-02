@@ -1,7 +1,7 @@
 package servicii;
 
 import clase.Restaurant;
-import Exceptii.CustomException;
+import exceptii.CustomException;
 import java.util.ArrayList;
 import java.util.List;
 

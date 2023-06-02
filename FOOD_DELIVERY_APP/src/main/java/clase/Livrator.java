@@ -1,10 +1,19 @@
 package clase;
 
 public class Livrator{
+    private int ID;
     private static String fullName = "Merealbe Briana";
     private static int varsta = 20;
 
     public Livrator(){}
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public static String getFullName() {
         return fullName;
