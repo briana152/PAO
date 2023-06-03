@@ -2,7 +2,7 @@ package clase;
 
 public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cloneable{
     private int ID;
-    private String userNameClient;
+    private String userNameClient = "";
     private String bloc;
     private String scara;
     private int apartament;
@@ -73,13 +73,11 @@ public class AdresaClient extends Adresa implements Comparable<AdresaClient>, Cl
 
     @Override
     public String toString() {
-        return super.toString() + " " +
-                "AdresaClient{" +
-                "ID=" + ID +
-                ", bloc='" + bloc + '\'' +
-                ", scara='" + scara + '\'' +
-                ", apartament=" + apartament +
-                '}';
+        return ID + ". " +
+                super.toString() + ", " +
+                bloc + ", " +
+                scara + ", " +
+                apartament + "\n";
     }
 
     @Override

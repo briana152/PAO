@@ -10,24 +10,11 @@ import java.util.*;
 
 import static persistente.util.DatabaseConnectionUtils.getDatabaseConnection;
 public class ClientRepository implements GenericRepository<Client> {
-
-/**
- * @author cvoinea
- * <p>
- * Repositories define an elegant method for storing, updating, and extracting the data stored from JAVA applications.
- * Usually they have a 1-to-1 relation with the entities. Any entity that should be persisted should have a repository
- *
- *
- * CRUD -> create read update delete
- */
-
     private final Map<String, Client> storage = new HashMap<>();
     private static final String INSERT_CLIENT_SQL = "INSERT INTO client (userName, fullName) VALUES (?, ?)";
     private static final String SELECT_ALL_CLIENT_SQL = "SELECT * FROM client";
-    private static final String SELECT1_CLIENT_SQL = "SELECT ? from client";
-    private static final String SELECT2_CLIENT_SQL = "SELECT ? from client WHERE ?";
-    private static final String UPDATE_CLIENT_SQL = "UPDATE client SET ? = ? WHERE ?";
-    private static final String DELETE_CLIENT_SQL = "DELETE FROM client WHERE ?";
+    private static final String UPDATE_CLIENT_SQL = "UPDATE client SET fullName = ? WHERE userName = ?";
+    private static final String DELETE_CLIENT_SQL = "DELETE FROM client WHERE userName = ?";
 
     private final Connection connection;
 
@@ -63,7 +50,6 @@ public class ClientRepository implements GenericRepository<Client> {
     }
     @Override
     public Client save(Client entity) {
-        storage.put(entity.getUserName(), entity);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CLIENT_SQL);
             preparedStatement.setString(1, entity.getUserName());
@@ -72,6 +58,7 @@ public class ClientRepository implements GenericRepository<Client> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        storage.put(entity.getUserName(), entity);
 
         return entity;
     }
@@ -82,17 +69,33 @@ public class ClientRepository implements GenericRepository<Client> {
     }
 
     @Override
-    public Optional<Client> findById(String userName) {
-        return Optional.ofNullable(storage.get(userName));
+    public Optional<Client> findById(String... values) {
+        return Optional.ofNullable(storage.get(values[0]));
     }
 
     @Override
-    public void update(Client entity) {
-        storage.put(entity.getUserName(), entity);
+    public void update(Client client, String... newValues) {
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLIENT_SQL);
+            preparedStatement.setString(1,client.getNumeClient());
+            preparedStatement.setString(2,client.getUserName());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        storage.put(client.getUserName(), client);
     }
 
     @Override
-    public void delete(Client entity) {
-        storage.remove(entity.getUserName());
+    public void delete(Client client) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT_SQL);
+            String userName = client.getUserName();
+            preparedStatement.setString(1, userName);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        storage.remove(client.getUserName());
     }
 }

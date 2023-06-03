@@ -13,6 +13,14 @@ public class GeneralService {
             throw new CustomException("Invalid number!");
         }
     }
+    public static int readInt(int limit) throws CustomException {
+        String line = scanner.next();
+        if (line.matches("^\\d+$") && Integer.parseInt(line) <= limit) {
+            return Integer.parseInt(line);
+        } else {
+            throw new CustomException("Invalid number!");
+        }
+    }
     public static int readIndex(int lenght) throws CustomException {
         String line = scanner.next();
         if (line.matches("^\\d+$") && Integer.parseInt(line) > 0 && Integer.parseInt(line) <= lenght) {

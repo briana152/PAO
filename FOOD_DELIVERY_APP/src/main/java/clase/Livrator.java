@@ -2,10 +2,23 @@ package clase;
 
 public class Livrator{
     private int ID;
-    private static String fullName = "Merealbe Briana";
-    private static int varsta = 20;
+    private String fullName;
+    private int varsta ;
 
-    public Livrator(){}
+    public Livrator(){
+        this.ID = 9999999;
+        this.fullName = "Livrator Random";
+        this.varsta = 20;
+    }
+    public Livrator(String fullName, int varsta) {
+        this.fullName = fullName;
+        this.varsta = varsta;
+    }
+    public Livrator(int ID, String fullName, int varsta) {
+        this.ID = ID;
+        this.fullName = fullName;
+        this.varsta = varsta;
+    }
 
     public int getID() {
         return ID;
@@ -15,25 +28,26 @@ public class Livrator{
         this.ID = ID;
     }
 
-    public static String getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public static void setFullName(String fullName) {
-        Livrator.fullName = fullName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public static int getVarsta() {
+    public int getVarsta() {
         return varsta;
     }
 
-    public static void setVarsta(int varsta) {
-        Livrator.varsta = varsta;
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
     }
 
     @Override
     public String toString() {
-        return "Nume livrator: " + fullName + "\n" +
+        return ID + ". " +
+                "Nume livrator: " + fullName + "\n" +
                 "Varsta Livrator: " + varsta + "\n";
     }
 }

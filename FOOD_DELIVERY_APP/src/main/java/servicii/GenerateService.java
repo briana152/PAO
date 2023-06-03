@@ -35,8 +35,10 @@ public class GenerateService {
         Meniu meniu = new Meniu(sectiuni);
 
         Adresa adresa = new Adresa("Bucuresti", "Pacii","Bld. Iuliu Maniu", 109);
+        Restaurant r = new Restaurant(9998, "KFC", adresa);
+        r.setMeniu(meniu);
 
-        return new Restaurant("KFC", adresa, meniu);
+        return r;
 
     }
 
@@ -64,8 +66,10 @@ public class GenerateService {
         Meniu meniu = new Meniu(sectiuni);
 
         Adresa adresa = new Adresa("Bucuresti", "Unirii","Str. Franceza", 62);
+        Restaurant r = new Restaurant(9999, "Starbucks", adresa);
+        r.setMeniu(meniu);
 
-        return new Restaurant("Starbucks", adresa, meniu);
+        return r;
 
     }
     public static List<Restaurant> returnAll(){

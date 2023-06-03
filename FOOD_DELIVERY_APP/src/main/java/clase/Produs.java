@@ -43,10 +43,7 @@ public class Produs implements Cloneable{
 
     @Override
     public String toString() {
-        return "Produs{" +
-                "numeProdus='" + numeProdus + '\'' +
-                ", pretProdus=" + pretProdus +
-                '}';
+        return numeProdus + ": " + pretProdus + "\n";
     }
 
     @Override

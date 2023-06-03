@@ -46,9 +46,6 @@ public class Sectiune {
 
     @Override
     public String toString() {
-        return "Sectiune{" +
-                "numeSectiune='" + numeSectiune + '\'' +
-                ", produseSectiune=" + produseSectiune +
-                '}';
+        return numeSectiune + "\n" + produseSectiune + "\n";
     }
 }

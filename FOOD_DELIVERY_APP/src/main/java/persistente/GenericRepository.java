@@ -8,9 +8,9 @@ public interface GenericRepository<T> {
 
     List<T> findAll();
 
-    Optional<T> findById(String id);
+    Optional<T> findById(String... values);
 
-    void update(T entity);
+    void update(T entity, String... newValues);
 
     void delete(T entity);
 

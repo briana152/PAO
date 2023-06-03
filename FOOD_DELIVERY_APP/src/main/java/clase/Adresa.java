@@ -64,12 +64,11 @@ public class Adresa implements Cloneable{
 
     @Override
     public String toString() {
-        return "Adresa{" +
-                "judet='" + judet + '\'' +
-                ", localitate='" + localitate + '\'' +
-                ", strada='" + strada + '\'' +
-                ", numar=" + numar +
-                '}';
+        return "Adresa: " +
+                judet + ", " +
+                localitate + ", " +
+                strada + ", " +
+                numar;
     }
 
     @Override

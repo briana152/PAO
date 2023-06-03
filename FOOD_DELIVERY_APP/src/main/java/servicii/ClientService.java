@@ -8,11 +8,6 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class ClientService {
-
-    /**
-     * Services have a way of obtaining backing repositories.
-     * One service can use multiple (or no) repositories.
-     */
     private final ClientRepository clientRepository = ClientRepository.getInstance();
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -24,7 +19,7 @@ public class ClientService {
         System.out.println("Username:");
         String userName = scanner.nextLine().strip();
         try {
-            c = getEmployeeByUserName(userName);
+            c = getClientByUserName(userName);
         }catch (CustomException ex){
             System.out.println(ex.getMessage());
         }
@@ -57,18 +52,36 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client getEmployeeByUserName(String userName) throws CustomException {
+    public Client getClientByUserName(String userName) throws CustomException {
         Optional<Client> client= clientRepository.findById(userName);
-        return client.orElseThrow(() -> new CustomException("Cannot find an employee having the provided username: " + userName));
+        return client.orElseThrow(() -> new CustomException("Cannot find a client with the username: " + userName));
     }
-    public void updateDetailsForCLient(Client client) throws CustomException {
-        clientRepository.findById(client.getUserName())
-                .orElseThrow(() -> new CustomException("Username does not exist!"));
+    public void updateNameForClient(Client client){
+        System.out.println("Old name: " + client.getNumeClient());
+        System.out.println("New name:");
+        String newName = scanner.nextLine().strip();
+        client.setNumeClient(newName);
         clientRepository.update(client);
     }
-    public void removeClient(Client client) throws CustomException {
-        clientRepository.findById(client.getUserName())
-                .orElseThrow(() -> new CustomException("Client does not exist!"));
-        clientRepository.delete(client);
+    public void removeClient(Client... clients){
+        Client c = new Client();
+        String userName = "";
+
+        if (clients.length != 0){
+            c = clients[0];
+        }else {
+            do {
+                System.out.println("Introdu username-ul:");
+                userName = scanner.nextLine().strip();
+                try {
+                    c = getClientByUserName(userName);
+                }catch (CustomException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+            }while (clientRepository.findById(userName).isEmpty());
+
+        }
+        clientRepository.delete(c);
     }
 }

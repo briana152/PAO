@@ -3,16 +3,34 @@ package clase;
 import java.util.Objects;
 
 public class Restaurant{
+    private int ID;
     private String numeRestaurant;
     private Adresa adresaRestaurant;
-    private Meniu meniu;
+    private Meniu meniu = new Meniu();
 
     public Restaurant(){}
 
-    public Restaurant(String numeRestaurant, Adresa adresaRestaurant, Meniu meniu) {
+    public Restaurant(String numeRestaurant, Adresa adresaRestaurant){
         this.numeRestaurant = numeRestaurant;
         this.adresaRestaurant = adresaRestaurant;
-        this.meniu = meniu;
+    }
+    public Restaurant(int ID, String numeRestaurant, Adresa adresaRestaurant) {
+        this.ID = ID;
+        this.numeRestaurant = numeRestaurant;
+        this.adresaRestaurant = adresaRestaurant;
+    }
+//    public Restaurant(String numeRestaurant, Adresa adresaRestaurant, Meniu meniu) {
+//        this.numeRestaurant = numeRestaurant;
+//        this.adresaRestaurant = adresaRestaurant;
+//        this.meniu = meniu;
+//    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getNumeRestaurant() {
@@ -54,10 +72,8 @@ public class Restaurant{
 
     @Override
     public String toString() {
-        return "Restaurant{" +
-                "numeRestaurant='" + numeRestaurant + '\'' +
-                ", adresaRestaurant=" + adresaRestaurant +
-                ", meniu=" + meniu +
-                '}';
+        return  ID + "." + numeRestaurant  + "\n" +
+                adresaRestaurant + "\n" +
+                meniu + "\n";
     }
 }

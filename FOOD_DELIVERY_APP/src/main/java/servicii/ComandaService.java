@@ -114,7 +114,7 @@ public class ComandaService {
         SortedSet<AdresaClient> set = client.getAdreseClient();
         AdresaClient[] array = set.toArray(new AdresaClient[0]);
         System.out.println("Alegeti adresa de livrare:");
-        AddressService.seeAllAddresses(array);
+//        AddressService.seeAllAddresses(array);
         System.out.println((1 + set.size()) + ". Adauga adresa noua");
         int option = -1;
         do {
@@ -130,7 +130,7 @@ public class ComandaService {
         if (option <= set.size()){
             comanda.setAdresaLivrare(array[option - 1]);
         }else{
-            AdresaClient a = AddressService.readAddress();
+            AdresaClient a = AddressService.readAddressClient();
             comanda.setAdresaLivrare(a);
             set.add(a);
         }

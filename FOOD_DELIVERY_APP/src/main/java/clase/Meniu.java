@@ -37,8 +37,8 @@ public class Meniu {
 
     @Override
     public String toString() {
-        return "Meniu{" +
-                "sectiuni=" + sectiuni +
-                '}';
+        return "-------------" + TITLU +
+                "-------------" + "\n" +
+                sectiuni;
     }
 }
