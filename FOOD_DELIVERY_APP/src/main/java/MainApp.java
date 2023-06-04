@@ -243,22 +243,22 @@ public class MainApp {
     }
 
     private void seeAllOrders() {
-        System.out.println("Cooming soon!");
+        System.out.println("Under maintenance!");
 //        ComandaService.seeAllOrders(client);
     }
 
     private void findOrderById() {
-        System.out.println("Cooming soon!");
+        System.out.println("Coming soon!");
 
     }
 
     private void updateOrderAddress() {
-        System.out.println("Cooming soon!");
+        System.out.println("Coming soon!");
 
     }
 
     private void placeOrder() {
-        System.out.println("Cooming soon!");
+        System.out.println("Under maintenance!");
 //        ComandaService.placeOrder(client, restaurante);
     }
     private void seeDetailsClient(){
