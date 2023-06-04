@@ -5,10 +5,10 @@ import clase.Restaurant;
 import exceptii.CustomException;
 import persistente.RestaurantRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RestaurantService {
 
@@ -86,21 +86,23 @@ public class RestaurantService {
         restaurantRepository.delete(restaurant);
     }
 
-//    public static void seeAllRestaurants(List<Restaurant> restaurante){
-//        for (Restaurant r: restaurante){
-//            System.out.println(r);
-//        }
-//    }
-//    public static void findRestaurantByName(String nume, List<Restaurant> restaurante) throws CustomException{
-//        List<Restaurant> restaurante2 = new ArrayList<>();
-//        for (Restaurant r: restaurante) {
-//            if(r.getNumeRestaurant().equalsIgnoreCase(nume)){
-//                restaurante2.add(r);
-//            }
-//        }
-//        if (!restaurante2.isEmpty()){
-//            seeAllRestaurants(restaurante2);
-//        }else throw new CustomException("Nu am gasit niciun restaurant!");
-//    }
+    public static void seeAllRestaurants(List<Restaurant> restaurante){
+        restaurante.forEach(System.out::println);
+    }
+    public static void findRestaurantByName(String nume, List<Restaurant> restaurante) throws CustomException{
+
+        AtomicBoolean restaurantFound = new AtomicBoolean(false);
+
+        restaurante.stream()
+                .filter(r -> r.getNumeRestaurant().equalsIgnoreCase(nume))
+                .forEach(r -> {
+                    System.out.println(r);
+                    restaurantFound.set(true);
+                });
+
+        if (!restaurantFound.get()) {
+            throw new CustomException("Nu exista niciun restaurant cu acest nume!");
+        }
+    }
 
 }

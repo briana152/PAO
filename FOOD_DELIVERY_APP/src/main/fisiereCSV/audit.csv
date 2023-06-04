@@ -1,5 +1,14 @@
 com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM client | 2023-06-04 18:35:15
-com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM livrator | 2023-06-04 18:35:15
-com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM restaurant | 2023-06-04 18:35:15
-com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM adresa_client | 2023-06-04 18:35:15
 com.mysql.cj.jdbc.ClientPreparedStatement: UPDATE livrator SET varsta = 34 WHERE ID = 5 | 2023-06-04 18:35:37
+com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO livrator (fullName, varsta) VALUES ('livrator nou', 35) | 2023-06-04 18:43:00
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM livrator WHERE fullName = 'livrator nou' AND varsta = 35 ORDER BY ID DESC | 2023-06-04 18:43:00
+com.mysql.cj.jdbc.ClientPreparedStatement: DELETE FROM livrator WHERE ID = 6 | 2023-06-04 18:43:09
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM client | 2023-06-04 18:45:11
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM livrator | 2023-06-04 18:45:11
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM restaurant | 2023-06-04 18:45:11
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM adresa_client | 2023-06-04 18:45:11
+com.mysql.cj.jdbc.ClientPreparedStatement: UPDATE client SET fullName = 'Merealbe Briana' WHERE userName = 'briana' | 2023-06-04 18:45:29
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM client | 2023-06-04 19:02:40
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM livrator | 2023-06-04 19:02:40
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM restaurant | 2023-06-04 19:02:40
+com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM adresa_client | 2023-06-04 19:02:40

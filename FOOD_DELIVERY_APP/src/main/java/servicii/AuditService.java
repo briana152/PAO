@@ -15,7 +15,7 @@ public class AuditService {
     private AuditService() {
         try
         {
-            this.writer = new FileWriter("src\\main\\fisiereCSV\\audit.csv");
+            this.writer = new FileWriter("src\\main\\fisiereCSV\\audit.csv", true);
         }
         catch (IOException e)
         {

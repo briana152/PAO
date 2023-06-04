@@ -196,38 +196,28 @@ public class MainApp {
     }
 
     private void seeAllRestaurants2() {
-        System.out.println("Cooming soon!");
-//        RestaurantService.seeAllRestaurants(restaurante);
+        RestaurantService.seeAllRestaurants(restaurante);
     }
 
     private void findRestaurantByName() {
-        System.out.println("Cooming soon!");
-//        System.out.println("Introduceti numele restaurantul pe care il cautati:\n");
-//        String nume = scanner.next();
-//        try {
-//            RestaurantService.findRestaurantByName(nume, restaurante);
-//        } catch (CustomException exception) {
-//            System.out.println(exception.getMessage());
-//        }
+        System.out.println("Introduceti numele restaurantul pe care il cautati:\n");
+        String nume = scanner.next();
+        try {
+            RestaurantService.findRestaurantByName(nume, restaurante);
+        } catch (CustomException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println();
+        }
 
     }
 
     private void seeAllAddresses() {
         addressService.getAllAddresses(client).forEach(System.out::println);
         System.out.println();
-//        System.out.println("Cooming soon!");
-//        SortedSet<AdresaClient> set = client.getAdreseClient();
-//        AdresaClient[] array = set.toArray(new AdresaClient[0]);
-//        AddressService.seeAllAddresses(array);
-
     }
 
     private void addAddress() {
         addressService.registerNewAddress(client);
-//        System.out.println("Cooming soon!");
-//        AdresaClient adresa = AddressService.readAddress();
-//        client.getAdreseClient().add(adresa);
-
     }
 
     private void updateAddress() {
@@ -239,23 +229,6 @@ public class MainApp {
             AdresaClient adresaClient = new AdresaClient();
             addressService.updateAdresaClient(adresaClient, client);
         }
-
-//        System.out.println("Cooming soon!");
-//        SortedSet<AdresaClient> set = client.getAdreseClient();
-//        AdresaClient[] array = set.toArray(new AdresaClient[0]);
-//        AdresaClient a;
-//
-//        seeAllAddresses();
-//
-//        System.out.print("Introduceti numarul adresei pe care doriti sa o schimbati: ");
-//        int i = readIndexOption(set.size());
-//        a = AddressService.findAddress(array[i - 1], set);
-//
-//        AddressService.showAddressMeniu();
-//
-//        System.out.print("Introduceti numarul optiunii: ");
-//        int option = readIndexOption(7);
-//        AddressService.updateAddress(option, a);
     }
 
     private void removeAddress() {
@@ -267,17 +240,6 @@ public class MainApp {
             AdresaClient adresaClient = new AdresaClient();
             addressService.removeAdresaClient(adresaClient,client);
         }
-//        System.out.println("Cooming soon!");
-//        SortedSet<AdresaClient> set = client.getAdreseClient();
-//        AdresaClient[] array = set.toArray(new AdresaClient[0]);
-//
-//        seeAllAddresses();
-//
-//        System.out.print("Introduceti numarul adresei pe care doriti sa o stergeti: ");
-//        int i = readIndexOption(set.size());
-//
-//        AddressService.deleteAddress(array[i - 1], set);
-
     }
 
     private void seeAllOrders() {
@@ -308,7 +270,6 @@ public class MainApp {
     private void updateClient(){
         clientService.updateNameForClient(client);
         System.out.println("Editarea a fost realizata cu succes!");
-//        System.out.println("Coming  soon!");
     }
     private void deleteClient2(){
         System.out.println("Sigur vreti sa stergeti acest cont definitiv? DA/NU");
@@ -318,16 +279,17 @@ public class MainApp {
             scanner.close();
             System.exit(0);
         }
-//        System.out.println("coming soon!");
     }
+
+    /**
+     * AICI ESTE PARTEA DE MENIU PENTRU ADMIN
+     */
     private void seeAllRestaurants1(){
         restaurantService.getAllRestaurants().forEach(System.out::println);
         System.out.println();
-//        System.out.println("coming soon!");
     }
     private void addRestaurant(){
         restaurantService.registerNewRestaurant();
-//        System.out.println("coming soon!");
     }
     private void updateRestaurant(){
         if (restaurantService.getAllRestaurants().isEmpty()){
@@ -338,7 +300,6 @@ public class MainApp {
             Restaurant restaurant = new Restaurant();
             restaurantService.updateRestaurant(restaurant);
         }
-//        System.out.println("coming soon!");
     }
     private void deleteRestaurant(){
         if (restaurantService.getAllRestaurants().isEmpty()){
@@ -349,13 +310,11 @@ public class MainApp {
             Restaurant restaurant = new Restaurant();
             restaurantService.removeRestaurant(restaurant);
         }
-//        System.out.println("coming soon!");
     }
     private void seeAllClients(){
         System.out.println("--------Clienti--------");
         clientService.getAllClients().stream().map(Client::getUserName).forEach(System.out::println);
         System.out.println();
-//        System.out.println("coming soon!");
     }
     private void deleteClient1(){
         if(clientService.getAllClients().isEmpty()){
@@ -366,16 +325,13 @@ public class MainApp {
             seeAllClients();
             clientService.removeClient();
         }
-//        System.out.println("Coming soon!");
     }
     private void seeAllDelivery(){
         livratorService.getAllLivratori().forEach(System.out::println);
         System.out.println();
-//        System.out.println("coming soon!");
     }
     private void addDelivery(){
         livratorService.registerNewLivrator();
-//        System.out.println("coming soon!");
     }
     private void updateDelivery(){
         if (livratorService.getAllLivratori().isEmpty()){
@@ -386,7 +342,6 @@ public class MainApp {
             Livrator livrator = new Livrator();
             livratorService.updateAgeForLivrator(livrator);
         }
-//        System.out.println("coming soon!");
     }
     private void deleteDelivery(){
         if (livratorService.getAllLivratori().isEmpty()){
@@ -397,7 +352,6 @@ public class MainApp {
             Livrator livrator = new Livrator();
             livratorService.removeLivrator(livrator);
         }
-//        System.out.println("coming soon!");
     }
     private int readOption(int i) {
         int option = -1;
@@ -411,11 +365,11 @@ public class MainApp {
         return option;
     }
 
-    private int readIndexOption(int lenght) {
+    private int readIndexOption(int length) {
         int option = -1;
         do {
             try {
-                option = GeneralService.readIndex(lenght);
+                option = GeneralService.readIndex(length);
             } catch (CustomException exception) {
                 System.out.println(exception.getMessage());
                 System.out.println("Invalid option! Try again!");
