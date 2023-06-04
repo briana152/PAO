@@ -1,7 +1,9 @@
 package persistente;
 
 import clase.Client;
+import servicii.AuditService;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.util.*;
 
 import static persistente.util.DatabaseConnectionUtils.getDatabaseConnection;
 public class ClientRepository implements GenericRepository<Client> {
+    private final AuditService auditService = AuditService.getInstance();
     private final Map<String, Client> storage = new HashMap<>();
     private static final String INSERT_CLIENT_SQL = "INSERT INTO client (userName, fullName) VALUES (?, ?)";
     private static final String SELECT_ALL_CLIENT_SQL = "SELECT * FROM client";
@@ -44,7 +47,8 @@ public class ClientRepository implements GenericRepository<Client> {
                 String f = resultSet.getNString("fullName");
                 storage.put(u,new Client(u,f));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -55,7 +59,8 @@ public class ClientRepository implements GenericRepository<Client> {
             preparedStatement.setString(1, entity.getUserName());
             preparedStatement.setString(2, entity.getNumeClient());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.put(entity.getUserName(), entity);
@@ -80,7 +85,8 @@ public class ClientRepository implements GenericRepository<Client> {
             preparedStatement.setString(1,client.getNumeClient());
             preparedStatement.setString(2,client.getUserName());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.put(client.getUserName(), client);
@@ -93,7 +99,8 @@ public class ClientRepository implements GenericRepository<Client> {
             String userName = client.getUserName();
             preparedStatement.setString(1, userName);
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.remove(client.getUserName());

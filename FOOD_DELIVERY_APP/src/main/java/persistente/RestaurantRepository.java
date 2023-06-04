@@ -3,7 +3,9 @@ package persistente;
 import clase.Adresa;
 import clase.Restaurant;
 import servicii.AddressService;
+import servicii.AuditService;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +15,7 @@ import java.util.*;
 import static persistente.util.DatabaseConnectionUtils.getDatabaseConnection;
 
 public class RestaurantRepository implements GenericRepository<Restaurant> {
+    private final AuditService auditService = AuditService.getInstance();
     private final Map<Integer, Restaurant> storage = new HashMap<>();
     private static final String INSERT_RESTAURANT_SQL = "INSERT INTO restaurant (nume, adresa) VALUES (?, ?)";
     private static final String SELECT_ALL_RESTAURANT_SQL = "SELECT * FROM restaurant";
@@ -49,7 +52,8 @@ public class RestaurantRepository implements GenericRepository<Restaurant> {
                 String a = resultSet.getNString("adresa");
                 storage.put(id, new Restaurant(id, n, AddressService.fromStringToAddress(a)));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -61,7 +65,8 @@ public class RestaurantRepository implements GenericRepository<Restaurant> {
             Adresa a = restaurant.getAdresaRestaurant();
             preparedStatement1.setString(2, AddressService.fromAddressToString(a));
             preparedStatement1.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement1.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         try {
@@ -72,7 +77,8 @@ public class RestaurantRepository implements GenericRepository<Restaurant> {
             if (resultSet.next()){
                 restaurant.setID(resultSet.getInt("ID"));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement2.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -99,7 +105,8 @@ public class RestaurantRepository implements GenericRepository<Restaurant> {
             preparedStatement.setString(2,AddressService.fromAddressToString(restaurant.getAdresaRestaurant()));
             preparedStatement.setInt(3,restaurant.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.put(restaurant.getID(), restaurant);
@@ -111,7 +118,8 @@ public class RestaurantRepository implements GenericRepository<Restaurant> {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_RESATAURANT_SQL);
             preparedStatement.setInt(1, restaurant.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.remove(restaurant.getID());

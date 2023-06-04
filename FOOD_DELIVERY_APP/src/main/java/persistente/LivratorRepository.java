@@ -1,7 +1,9 @@
 package persistente;
 
 import clase.Livrator;
+import servicii.AuditService;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,11 +13,12 @@ import java.util.*;
 import static persistente.util.DatabaseConnectionUtils.getDatabaseConnection;
 
 public class LivratorRepository implements GenericRepository<Livrator> {
+
+    private final AuditService auditService = AuditService.getInstance();
     private final Map<Integer, Livrator> storage = new HashMap<>();
     private static final String INSERT_LIVRATOR_SQL = "INSERT INTO livrator (fullName, varsta) VALUES (?, ?)";
     private static final String SELECT_ALL_LIVRATOR_SQL = "SELECT * FROM livrator";
     private static final String SELECT_ALL_WHERE_LIVRATOR_SQL = "SELECT * FROM livrator WHERE fullName = ? AND varsta = ? ORDER BY ID DESC";
-
     private static final String UPDATE_LIVRATOR_SQL = "UPDATE livrator SET varsta = ? WHERE ID = ?";
     private static final String DELETE_LIVRATOR_SQL = "DELETE FROM livrator WHERE ID = ?";
 
@@ -48,7 +51,8 @@ public class LivratorRepository implements GenericRepository<Livrator> {
                 String v = resultSet.getString("varsta");
                 storage.put(id, new Livrator(id,n,Integer.parseInt(v)));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -59,7 +63,8 @@ public class LivratorRepository implements GenericRepository<Livrator> {
             preparedStatement1.setString(1, livrator.getFullName());
             preparedStatement1.setInt(2, livrator.getVarsta());
             preparedStatement1.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement1.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -71,7 +76,8 @@ public class LivratorRepository implements GenericRepository<Livrator> {
             if (resultSet.next()){
                 livrator.setID(resultSet.getInt("ID"));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement2.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -97,7 +103,8 @@ public class LivratorRepository implements GenericRepository<Livrator> {
             preparedStatement.setInt(1,livrator.getVarsta());
             preparedStatement.setInt(2,livrator.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.put(livrator.getID(), livrator);
@@ -109,7 +116,8 @@ public class LivratorRepository implements GenericRepository<Livrator> {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_LIVRATOR_SQL);
             preparedStatement.setInt(1, livrator.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.remove(livrator.getID());

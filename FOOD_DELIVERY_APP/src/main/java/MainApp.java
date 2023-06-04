@@ -5,7 +5,6 @@ import exceptii.CustomException;
 import clase.AdresaClient;
 import clase.Client;
 import clase.Restaurant;
-import persistente.AdresaClientRepository;
 import servicii.*;
 
 public class MainApp {

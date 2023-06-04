@@ -2,7 +2,9 @@ package persistente;
 
 import clase.AdresaClient;
 import servicii.AddressService;
+import servicii.AuditService;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +14,7 @@ import java.util.*;
 import static persistente.util.DatabaseConnectionUtils.getDatabaseConnection;
 
 public class AdresaClientRepository implements GenericRepository<AdresaClient> {
+    private final AuditService auditService = AuditService.getInstance();
     private final Map<Integer, AdresaClient> storage = new HashMap<>();
     private static final String INSERT_ADRESA_CLIENT_SQL = "INSERT INTO adresa_client (userName_client, adresa) VALUES (?, ?)";
     private static final String SELECT_ALL_ADRESA_CLIENT_SQL = "SELECT * FROM adresa_client";
@@ -52,7 +55,8 @@ public class AdresaClientRepository implements GenericRepository<AdresaClient> {
                 adresaClient.setUserNameClient(u);
                 storage.put(id, adresaClient);
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -63,7 +67,8 @@ public class AdresaClientRepository implements GenericRepository<AdresaClient> {
             preparedStatement1.setString(1, adresaClient.getUserNameClient());
             preparedStatement1.setString(2, AddressService.fromClientAddressToString(adresaClient));
             preparedStatement1.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement1.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -75,7 +80,8 @@ public class AdresaClientRepository implements GenericRepository<AdresaClient> {
             if (resultSet.next()){
                 adresaClient.setID(resultSet.getInt("ID"));
             }
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement2.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -101,7 +107,8 @@ public class AdresaClientRepository implements GenericRepository<AdresaClient> {
             preparedStatement.setString(1,AddressService.fromClientAddressToString(adresaClient));
             preparedStatement.setInt(2,adresaClient.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.put(adresaClient.getID(), adresaClient);
@@ -113,7 +120,8 @@ public class AdresaClientRepository implements GenericRepository<AdresaClient> {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ADRESA_CLIENT_SQL);
             preparedStatement.setInt(1, adresaClient.getID());
             preparedStatement.execute();
-        } catch (SQLException e) {
+            auditService.scrieCSV(preparedStatement.toString());
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
         storage.remove(adresaClient.getID());
